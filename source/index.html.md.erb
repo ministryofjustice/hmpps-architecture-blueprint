@@ -11,76 +11,34 @@ title: HMPPS Architecture Blueprint
 >us know](https://mojdt.slack.com/archives/C049XU1LR6W).
 
 This user guide is for teams with applications or services deployed on, or
-intending to deploy into HMPPS. It contains the blueprint for a reference
-architecture which has been designed to accommodate most services which will
-typically comprise:
+intending to deploy into the HMPPS digital platforms. It contains a set of
+principles and patterns that can be used to design digital services. When
+applied appropriately these patterns should ensure a digital service integrate
+seamlessly with our digital platforms.
 
-* form based user input
-* business logic
-* storage of structured data
-
-There may be justification for deviating from this reference architecture. If
-a technical team believes that this is the case for their domain, they should
-prepare a case for this deviation and discuss this with their assigned HMPPS
-Digital Technical Architect or open a discussion with the TA community at
-Slack Channel [#hmpps-technical-architecture](https://mojdt.slack.com/archives/CPT2USKRQ).
-
-The HMPPS Digital provision is conceived as a multi-tier, event-driven
+The HMPPS Digital platforms are conceived as a multi-tier, event-driven
 ecosystem of integrated services which help drive prison and probation
 processes and enable staff to make informed decisions. Over time the
 implementation of domain focused digital services will displace older
 monolithic systems as the authority for HMPPS administration and management.
 
-All activity should follow the HMPPS and MoJ
-[Architectural Principles](documentation/explanation/principles-overview.html)
+## Architectural Principles and Patterns
+All technical design should align to the MoJ and HMPPS
+[Architectural Principles](documentation/explanation/principles-overview.html).
+
+## The HMPPS Domain Model
 
 We are business modelling and mapping to [HMPPS Domains](./documentation/explanation/domains.html)
 based on the principles of Domain Driven Design
 
-Specific user-facing services are built to a [service pattern](./documentation/explanation/service-technical-architecture.html)
-that has been proven across multiple live services
+## HMPPS Digital Service Patterns
 
-We aim to choreograph business processes across services using [domain events](./documentation/explanation/domain-events.html)
-to facilitate decoupling of teams and systems
+Services built using patterns chosen from a defined set of [HMPPS Digital Service Patterns](./documentation/patterns/hmpps-digital-service-patterns.html) will seamlessly integrate with the HMPPS Digital platforms.
 
-## Tutorials
+## Roadmaps and Progression
 
-- [Setting up a new service](./documentation/tutorials/building-a-service.html) using the HMPPS template projects
-- [Creating a hosting environment](./documentation/tutorials/creating-a-hosting-environment.html) using one of the MoJ hosting platforms
-- [Designing your domain API](./documentation/tutorials/apis.html) according
-  to HMPPS Digital standards
+We are in the process of performing large scale change on our technical environment. As this continues we are still actively managing an estate of [legacy services](./documentation/reference/legacy-systems.html) that are vital for day-to-day operation of the justice system. Our [indicative roadmaps](./documentation/reference/domain-roadmap.html) on the activity and progress of the modernisation of the HMPPS technical landscape show how we are developing our systems over time.
 
-## How-To Guides
+## External Links
 
-Common Components address cross-cutting concerns applicable to all domains.
-
-Many common components are used across MOJ and are developed and supported by
-either the HMPPS Development team, [Cloud Platform]() or [Operations Engineering][operations-engineering] or the
-
-[operations-engineering]: https://operations-engineering.service.justice.gov.uk/documentation/services.html#our-services
-
-Those specific to HMPPS' needs are delivered by the **Core Components**
-service area.
-
-- [Authenticating users](./documentation/guides/user-authorisation.html) with your service using HMPPS Auth
-- [Managing the source code](./documentation/guides/source-code-management.html)
-  of your service
-- [Adding monitoring and observability](./documentation/guides/monitoring.html) to your service
-- [Adding business-level metrics]() to your service
-- [Publishing domain events]() from your service
-- [Logging activity](./documentation/guides/system-logging.html) in your service
-- [Adding user access auditing](./documentation/guides/user-audit.html) to
-  your service
-- [Contributing to the architecture documentation](https://github.com/ministryofjustice/hmpps-architecture-blueprint/blob/main/README.md)
-
-## Reference
-
-- [DPS Domain Roadmap](./documentation/reference/domain-roadmap.html)
-- [Links](./documentation/reference/links.html) to other sources of information
-- Working with the [older systems](./documentation/reference/legacy-systems.html)
-  that make up a key part of our infrastrucure
-
-## Case Studies
-- [Court Register](./documentation/case-studies/court-register.html)
-- [Prisoner Location](./documentation/case-studies/prisoner-location.html)
-- [Prisoner Timetable](./documentation/case-studies/prisoner-timetable.html)
+[Useful guides and links](./documentation/reference/links.html) that inform design work in HMPPS Digital
