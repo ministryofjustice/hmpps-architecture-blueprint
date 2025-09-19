@@ -25,8 +25,6 @@ typical for a system of this age:
 As such a programme of work is underway to replace NOMIS with a new suite of
 digital solutions.
 
-* [Replacing NOMIS and Tackling the Data](https://docs.google.com/presentation/d/17EnFYSoRLBqF24qhZBgtAXRYL3IQp8l4Cw-ssZpioS0/edit?usp=sharing)
-
 ## Delius (Probation)
 
 Delius (also known as NDelius for National Delius) is the main case/person
@@ -34,31 +32,6 @@ management system used by Probation Practitioners to manage people on
 probation (community licenses).
 
 [Delius product team pages (requires Confluence account)](https://dsdmoj.atlassian.net/wiki/spaces/NDSS/pages/2880209197/National+Delius+Service+Team+Home+Page)
-
-### Getting the data
-
-There are a number of APIs that can be used to access data stored in NDelius,
-but it is recommended that in the first instance you post a message in
-[#probation-integration-tech](https://mojdt.slack.com/archives/C02HQ4M2YQN)
-
-### Environments
-
-- Dev (aka Test): https://ndelius.test.probation.service.justice.gov.uk
-
-Contains synthetic data and requires no special clearance (other than standard
-HMPPS controls). Not connected to any OASys environments.
-
-- PreProd: https://ndelius.preprod.probation.service.justice.gov.uk
-
-PreProd contains data copied directly from Prod - this is usually
-refreshed monthly. As such Security Clearance is required to access PreProd. In
-PreProd, OASys and NDelius exchange Offender and Assessment data via NDH.
-
-- Prod: https://ndelius.probation.service.justice.gov.uk
-
-Prod contains live data, as such Security Clearance is required. It is highly
-unusual for anyone other than frontline staff to need access to Prod. In Prod,
-OASys and NDelius exchange Offender and Assessment data via NDH.
 
 ## PPUD (Probation and Prison)
 
@@ -78,24 +51,6 @@ first instance contact the
 [#hmpps-technical-architecture](https://mojdt.slack.com/archives/CEUQKFNCS)
 channel.
 
-### Environments
-
-- Dev (known as dev/test): https://internaltest.ppud.justice.gov.uk
-
-Contains synthetic data and requires no special clearance (other than standard
-HMPPS controls).
-
-- PreProd (known as UAT): https://uat.ppud.justice.gov.uk
-
-UAT contains data copied and pseudo-anonymised from Prod - this is usually
-refreshed 3/4 times each year. As such Security Clearance is required to access
-UAT or Prod.
-
-- Prod: https://www.ppud.justice.gov.uk
-
-Prod contains live data, as such Security Clearance is required. It is highly
-unusual for anyone other than frontline staff to need access to Prod.
-
 ## OASys (Probation and Prison)
 
 Offender Assessment System (OASys) which manages most of the risk assessments
@@ -107,34 +62,6 @@ OASys is a Oracle APEX application hosted in MoJ's Azure fix-n-go environment.
 Also see the [Assess Risks and
 Needs](https://dsdmoj.atlassian.net/wiki/spaces/ARN/overview?homepageId=2358771974)
 project.
-
-### Getting the data
-
-There are a number of APIs that can be used to access data stored in OASys, but
-it is recommended that in the first instance you post a message in
-[#probation-integration-tech](https://mojdt.slack.com/archives/C02HQ4M2YQN)
-
-### Environments
-
-- Dev (known as t1): https://ords.t1.oasys.service.justice.gov.uk
-
-Contains synthetic data and requires no special clearance (other than standard
-HMPPS controls). Not connected to any NDelius environments.
-
-- PreProd : https://pp-oasys.az.justice.gov.uk
-
-PreProd contains data copied from Prod - this is usually refreshed on a weekly
-basis (on Sunday evenings). As such Security Clearance is required to access
-PreProd.
-
-- Prod : https://oasys.az.justice.gov.uk
-
-Prod contains live data, as such Security Clearance is required. It is highly
-unusual for anyone other than frontline staff to need access to Prod. In Prod,
-OASys and NDelius exchange Offender and Assessment data via NDH.
-
-There are also additional environments, T2, Training and Practice that are used,
-but can be ignored for most purposes.
 
 ## NDH (Prison and Probation)
 
