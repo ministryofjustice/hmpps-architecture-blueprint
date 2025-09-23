@@ -6,13 +6,13 @@ title: Pattern | Separate Presentation Logic and Orchestration into Different Ap
 
 ## Outline
 
-Separate digital services into application components oriented around their function. Build the user interface application using  Typescript/NodeJS using Nunjucks templates, and use the UI components and patterns provided by the MoJ and GOV.UK design systems. If the digital service implements business logic or requires orchestration of dependencies build a back end application using Kotlin to contain this. The front end application should communicate with the back end application using a [Backend For Frontend](https://samnewman.io/patterns/architectural/bff/) integration pattern.
+Separate digital services into application components oriented around their function. Build the user interface application using  Typescript/NodeJS and Nunjucks templates, and use the UI components and patterns provided by the MoJ and GOV.UK design systems. If the digital service implements business logic or requires orchestration of dependencies, build a back end application using Kotlin to contain this. The front end application should communicate with the back end application using a [Backend For Frontend](https://samnewman.io/patterns/architectural/bff/) integration pattern.
 
 ## Rationale
 
 Implementing front end services in Typescript/NodeJS supports seamless integration of the design system components common to government and Ministry of Justice systems. The design systems provide code as an NPM package and include HTML, JavaScript, CSS and Nunjucks macros that are simple to include in Typescript/NodeJS applications.
 
-Separating business and orchestration logic into a dedicated back end application ensures this is kept separate from presentation logic. Building back end logic in Kotlin also helps if this needs to be split out into a domain service to be shared across the HMPPS Digital landscape.
+Separating business and orchestration logic into a dedicated back end application keeps this separate from presentation logic. Building back end logic in Kotlin also helps when splitting this out into a shared domain service to share across the HMPPS Digital landscape.
 
 ![](../../images/hmpps-patterns-ui-backend.png)
 
