@@ -14,25 +14,36 @@ title: Architectural Principles
 
 ## Principles in Practice
 
-- Digital Prison Services (DPS) will be architected as a set of
-  loosely-coupled, "right-sized" (Domains?) services, each owned and supported
+- The HMPPS digital service platforms (Digital Prison Services and Probation
+  Digital Services) will be architected as a set of
+  loosely-coupled, "right-sized" services, each owned and supported
   for their life-time by teams of dedicated professionals. These will be built
-  with a single user experience and to GDS standards.
+  with a single user experience and to the GDS Service Standard.
 - Domain Services will be recognised as key authority systems responsible for
   their own data. Domain service delivery teams must ensure that their
   domain's data is available to downstream services as required - both via an
   API and for reporting and data analytics purposes.
-- Core prison data must be retrieved from the appropriate domain API. NOMIS
-  should no-longer be considered the source of truth for prison data. In the
-  short to medium term, data can be synchronised back to NOMIS to satisfy
-  downstream dependencies.
+- Core HMPPS domain data should be retrieved from the appropriate domain API.
+  Legacy systems (NOMIS, NDelius, OASys etc.) remain authoritative for their
+  existing data, but new capability should not treat them as the long-term
+  source of truth for HMPPS data. In the short to medium term, data can be
+  synchronised back to the legacy system databases to satisfy downstream
+  dependencies.
 - Domain Services will integrate in a loosely coupled way using Events and
-  APIs. Domains services are responsible keeping themselves aligned to the
-  current prisons state by listening out for event of interest and performing
+  APIs. Domain services are responsible for keeping themselves aligned to the
+  current state by listening out for events of interest and performing
   internal processing accordingly.
-- Data should not be duplicated data across prison and probation services
-  unless it is absolutely necessary - e.g. for reasons of performance or
-  resilience
+- Data should not be duplicated across prison and probation services
+  unless absolutely necessary - e.g. for reasons of performance or
+  resilience. In cases where data is duplicated it is the responsibility of the consuming
+  team to keep their systems up-to-date with the primary source
+- HMPPS Digital provides shared platforms, tooling and templates so that
+  delivery teams can focus on user needs rather than reinventing common
+  building blocks. Services should be built on these foundations by default.
+- Delivery teams are responsible for their services in production for its
+  lifetime, including incident response and continuous improvement. Teams
+  practice continuous delivery, with small, frequent, automated releases and
+  fast rollback.
 
 ## Security Principles
 
@@ -47,12 +58,16 @@ guidance.
 - Open-source over closed-source - Secure development practices enabling
   “coding in the open”
 - Continuous delivery over change management
-- Public cloud by default
-- Trust but verify code
+- Public cloud by default, via MoJ cloud platforms
+- Automated dependency and vulnerability scanning, alongside peer review, on every change
 - Secure systems over secure zones
 - Immutable infrastructure over patch-in-place
 - Audit, Audit, Audit
 
 ## Further Reading
 
+- [HMPPS Digital Service Patterns](https://architecture-patterns.hmpps.service.justice.gov.uk)
+- [GDS Service Standard](https://www.gov.uk/service-manual/service-standard)
+- [MoJ Technology Code of Practice](https://technology-code-of-practice.service.justice.gov.uk/)
+- [MoJ Cyber Security guidance](https://security-guidance.service.justice.gov.uk/)
 - [Continuous Architecture in Practice](https://pgppgp.wordpress.com/2014/08/18/continuous-architecture-principles/)
