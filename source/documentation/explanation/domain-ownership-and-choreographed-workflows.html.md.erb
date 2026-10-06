@@ -69,6 +69,8 @@ happens in its area, and other domains listen for the events they care
 about and react on their own terms. No central service directs the
 workflow; the journey emerges from each domain doing its part.
 
+![A prisoner release is published as a skinny domain event. Accommodation, probation workload, licences and prison visits independently consume it, retrieve any required detail from the domain API, and run their own workflows.](../../images/prisoner-release-choreography.png)
+
 ### When and where to apply this
 
 - Apply to **all new HMPPS services** and to new integrations with
