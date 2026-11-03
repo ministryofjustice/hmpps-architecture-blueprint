@@ -1,0 +1,92 @@
+---
+title: Domain ownership and decoupled, choreographed workflows
+---
+
+# Domain ownership and decoupled, choreographed workflows
+
+## Technical Direction
+
+Each HMPPS domain **owns its data and its business rules**. Other
+services interact with a domain only through its published **API** and
+its **Domain Events** — never by reaching into its data store or
+duplicating its logic. Cross-domain workflows are **choreographed**:
+each domain reacts independently to events it cares about, with no
+central orchestration.
+
+## Rationale
+
+HMPPS is made up of many domains — for example prisoners, sentences,
+movements, assessments — each owned by a different delivery team, and
+each still integrating with legacy systems such as NOMIS, NDelius and
+OASys. Tight, point-to-point integration between these makes releases
+fragile and forces teams to co-ordinate closely on every change. This
+pattern is how HMPPS makes **domain ownership work in practice** across
+many teams: it lets each domain evolve at its own pace while remaining
+part of a coherent whole.
+
+### Domain ownership
+
+A domain is the **single source of truth** for its data. It enforces
+its own **validation and business rules**, and is responsible for
+publishing changes so the rest of the ecosystem can stay aligned.
+
+### Interacting with a domain: APIs and Domain Events
+
+Three interaction modes fall out of domain ownership:
+
+- **Read via the domain's API.** Any service needing data owned by a
+  domain calls that domain's API. Do not duplicate the data; the domain
+  is authoritative.
+- **Write via the domain's API.** When a service needs
+  to change data owned by another domain within a workflow, it calls that domain's write
+  API and waits for the response.
+  Synchronous writes matter because:
+    - the owning domain enforces its **validation and business rules**;
+    - the caller gets **immediate, direct feedback** — success or
+      failure, validation errors, generated identifiers — which is
+      essential when a **user interface** is waiting on the outcome;
+    - the owning domain then publishes its own Domain Event describing
+      what changed, so the wider ecosystem reacts from a single,
+      consistent source of truth.
+- **React via Domain Events.** When a business-level change happens in
+  a domain — for example a prisoner has been released, or an assessment
+  has been completed — the owning domain publishes an event. Any
+  interested domain subscribes and reacts on its own terms. See
+  [Domain Events](./domain-events.html) for the mechanism and schema.
+
+The overall pattern is therefore **read via API, write via API, react
+via events** — with events always flowing outward from the
+authoritative domain.
+
+### Choreographed workflows
+
+As a person moves through the justice system — arrested, remanded,
+sentenced, received into prison, released, supervised on licence — the
+activity is handled by many different systems, each owned by a
+different domain. **Domain Events are how these systems choreograph
+that journey.** Each domain publishes events when something meaningful
+happens in its area, and other domains listen for the events they care
+about and react on their own terms. No central service directs the
+workflow; the journey emerges from each domain doing its part.
+
+![A prisoner release is published as a skinny domain event. Accommodation, probation workload, licences and prison visits independently consume it, retrieve any required detail from the domain API, and run their own workflows.](../../images/prisoner-release-choreography.png)
+
+### When and where to apply this
+
+- Apply to **all new HMPPS services** and to new integrations with
+  legacy systems.
+- Treat every domain as the **owner** of its data and rules — call its
+  API for reads and writes, and subscribe to its events for reactions.
+- Publish an event for **every business-level change** in your domain;
+  keep events **skinny** and expect consumers to call your API for
+  detail.
+- Do **not duplicate another domain's data**. Duplicate only when
+  performance or resilience clearly require it, and take responsibility
+  for keeping the copy current via events.
+
+## Further Reading
+
+- [Architectural Principles](./principles-overview.html)
+- [HMPPS Services: Technical Architecture](./service-technical-architecture.html)
+- [Domain Events](./domain-events.html)
+- [HMPPS Domains](./domains.html)
